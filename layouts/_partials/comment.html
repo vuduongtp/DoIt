@@ -116,6 +116,16 @@
             {{- if isset $waline "reaction" -}}
                 {{- $commentConfig = dict "reaction" $waline.reaction | dict "waline" | merge $commentConfig -}}
             {{- end -}}
+            {{- with $waline.locale -}}
+                {{- $commentConfig = dict "locale" . | dict "waline" | merge $commentConfig -}}
+            {{- end -}}
+            {{- with $waline.noCopyright -}}
+                {{- $commentConfig = dict "noCopyright" . | dict "waline" | merge $commentConfig -}}
+            {{- end -}}
+            {{- with $waline.reaction -}}
+                {{- $commentConfig = dict "reaction" . | dict "waline" | merge $commentConfig -}}
+            {{- end -}}
+
             {{- $shims := dict "@waline/client" "js/shims/waline.js" -}}
             {{- $options := dict -}}
             {{- $source := $cdn.walineJS | default "lib/waline/waline.js" -}}
